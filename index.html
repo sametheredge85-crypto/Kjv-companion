@@ -7,7 +7,7 @@
 
     <!-- iOS PWA Support -->
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="KJV Harmony">
 
     <!-- iOS Icons -->
@@ -208,7 +208,7 @@
     <!-- Explorer Screen -->
     <div id="explorer-screen" class="screen">
         <h2 style="text-align:center; margin-bottom:20px; color:#3c2f1e;">KJV Harmony Explorer</h2>
-        <input id="verse-input" type="text" class="search-box" placeholder="Type any verse or question... (example: John 3:16, Easter, wisdom)" onkeypress="if(event.key==='Enter') getHarmony()">
+        <input id="verse-input" type="text" class="search-box" aria-label="Enter a verse reference or topic" placeholder="Type any verse or question... (example: John 3:16, Easter, wisdom)" onkeypress="if(event.key==='Enter') getHarmony()">
         <button onclick="getHarmony()" class="btn harmony-btn">
             <span>Get Harmony</span><span class="flame">&#x1F525;</span>
         </button>
@@ -218,7 +218,7 @@
     <!-- Annex Screen -->
     <div id="annex-screen" class="screen">
         <h2 style="text-align:center; margin-bottom:16px;">Annex Library</h2>
-        <input id="annex-search" type="text" class="search-box" placeholder="Search the Annex Library for... (e.g., wisdom and the heart)">
+        <input id="annex-search" type="text" class="search-box" aria-label="Search the Annex Library" placeholder="Search the Annex Library for... (e.g., wisdom and the heart)">
         <button onclick="searchAnnex()" class="btn" style="background:#5c4630;">Search Storehouse</button>
         <div id="annex-results" style="margin-top:20px;"></div>
 
@@ -330,6 +330,15 @@
             localStorage.setItem('samAnnex', JSON.stringify(annexLibrary));
         }
 
+        function esc(str) {
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;');
+        }
+
         // ============== SEARCH & DISPLAY ==============
         function getHarmony() {
             const input = document.getElementById('verse-input').value.toLowerCase().trim();
@@ -339,23 +348,23 @@
             if (result) {
                 resultDiv.innerHTML =
                     '<div class="harmony-result">' +
-                    '<div class="verse-text">' + result.verse + '</div>' +
+                    '<div class="verse-text">' + esc(result.verse) + '</div>' +
                     '<div class="section-title">Context:</div>' +
-                    '<p>' + result.context + '</p>' +
+                    '<p>' + esc(result.context) + '</p>' +
                     '<div class="section-title">Harmony of Scripture:</div>' +
                     '<ul style="padding-left:20px; line-height:1.8;">' +
-                    result.harmony.map(function(h) { return '<li>' + h + '</li>'; }).join('') +
+                    result.harmony.map(function(h) { return '<li>' + esc(h) + '</li>'; }).join('') +
                     '</ul>' +
                     '<div class="section-title">Insights:</div>' +
-                    '<p>' + result.insights + '</p>' +
+                    '<p>' + esc(result.insights) + '</p>' +
                     '<div class="section-title">Application:</div>' +
-                    '<p style="font-style:italic;">' + result.application + '</p>' +
+                    '<p style="font-style:italic;">' + esc(result.application) + '</p>' +
                     '</div>';
                 resultDiv.style.display = 'block';
             } else {
                 resultDiv.innerHTML =
                     '<div class="card"><p style="text-align:center; color:#8b5a2b;">' +
-                    'No harmony found for "<strong>' + input + '</strong>".<br><br>' +
+                    'No harmony found for &#8220;<strong>' + esc(input) + '</strong>&#8221;.<br><br>' +
                     'Try: <strong>john 3:16</strong>, <strong>easter</strong>, <strong>wisdom</strong>, ' +
                     '<strong>proverbs 8:10-12</strong>, <strong>james 1:5</strong>, or <strong>isaiah 42</strong>' +
                     '</p></div>';
@@ -368,7 +377,7 @@
             const resultsDiv = document.getElementById('annex-results');
 
             if (!query) {
-                resultsDiv.innerHTML = '<p style="text-align:center; color:#8b5a2b;">Enter a topic, e.g., "wisdom and the heart" or "faith and election"</p>';
+                resultsDiv.innerHTML = '<p style="text-align:center; color:#8b5a2b;">Enter a topic, e.g., &#8220;wisdom and the heart&#8221; or &#8220;faith and election&#8221;</p>';
                 return;
             }
 
@@ -378,14 +387,14 @@
 
             if (matches.length > 0) {
                 resultsDiv.innerHTML = matches.map(function(sub) {
-                    return '<div class="card"><strong style="color:#8b5a2b;">' + sub.name + '</strong><br>' +
-                        '<p style="margin-top:8px;">' + sub.entry + '</p>' +
+                    return '<div class="card"><strong style="color:#8b5a2b;">' + esc(sub.name) + '</strong><br>' +
+                        '<p style="margin-top:8px;">' + esc(sub.entry) + '</p>' +
                         '<small style="color:#8b5a2b;">Fully harmonised &bull; Tied to finished work of Christ</small></div>';
                 }).join('');
             } else {
                 resultsDiv.innerHTML =
                     '<div class="card"><p style="text-align:center; color:#8b5a2b;">' +
-                    'No results for "<strong>' + query + '</strong>". Try: <strong>wisdom</strong>, <strong>faith</strong>, <strong>grace</strong>, or <strong>trials</strong>' +
+                    'No results for &#8220;<strong>' + esc(query) + '</strong>&#8221;. Try: <strong>wisdom</strong>, <strong>faith</strong>, <strong>grace</strong>, or <strong>trials</strong>' +
                     '</p></div>';
             }
         }
