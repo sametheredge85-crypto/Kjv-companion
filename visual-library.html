@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visual Library</title>
+    <style>
+        body {
+            font-family: Georgia, serif;
+            background-color: #fdfbf7;
+            margin: 0;
+            padding: 20px;
+            color: #2a2a2a;
+            line-height: 1.6;
+        }
+        h1 {
+            text-align: center;
+            color: #6b4e16;
+            margin-bottom: 10px;
+        }
+        h2 {
+            color: #6b4e16;
+            margin-top: 30px;
+        }
+        p {
+            max-width: 700px;
+            margin: 10px auto;
+            text-align: center;
+        }
+        .gallery {
+            max-width: 900px;
+            margin: 20px auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .gallery img {
+            width: 100%;
+            border: 2px solid #6b4e16;
+            border-radius: 4px;
+        }
+        .note {
+            font-size: 0.9rem;
+            color: #6b4e16;
+            text-align: center;
+            margin-top: 10px;
+        }
+        a {
+            color: #6b4e16;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .back {
+            display: block;
+            margin: 40px auto;
+            text-align: center;
+            color: #6b4e16;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Visual Library</h1>
+
+    <p>
+        A collection of motifs, templates, sermon graphics, and ministry visuals.  
+        These examples help illustrate the whole counsel of God with clarity, beauty, and reverence.
+    </p>
+
+    <p class="note">
+        Add your images to the <strong>/images/</strong> folder and link them below.  
+        Use short filenames to avoid long-path issues.
+    </p>
+
+    <h2>Motifs & Templates</h2>
+    <div class="gallery">
+        <!-- Add your images like this -->
+        <!-- <img src="images/template1.jpg" alt="Template Example"> -->
+    </div>
+
+    <h2>Sermon Graphics</h2>
+    <div class="gallery">
+        <!-- <img src="images/sermon1.jpg" alt="Sermon Graphic"> -->
+    </div>
+
+    <h2>Scripture Cards</h2>
+    <div class="gallery">
+        <!-- <img src="images/scripture1.jpg" alt="Scripture Card"> -->
+    </div>
+
+    <h2>Photography & Backgrounds</h2>
+    <div class="gallery">
+        <!-- <img src="images/photo1.jpg" alt="Background Image"> -->
+    </div>
+
+    <p class="note">
+        To add a new image, upload it to <strong>/images/</strong> and insert it into the gallery.  
+        The Companion can help you format captions, categories, and layout.
+    </p>
+
+    <a class="back" href="index.html">← Back to Home</a>
+
+</body>
+</html>
