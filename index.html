@@ -324,6 +324,10 @@
 
         <button onclick="navigateTo('explorer')" class="btn">Start Harmony Explorer</button>
 
+        <a href="/Kjv-companion/harmonizer/" class="btn" style="display:block; text-align:center; text-decoration:none; background:linear-gradient(to right,#1a365d,#2c5282);">
+            🎵 Open KJV Harmonizer App
+        </a>
+
         <div class="stats" id="stats-grid">
             <div class="stat-card">
                 <div style="font-size:24px; color:#8b5a2b;" id="stat-explored">0</div>
@@ -446,6 +450,9 @@
         <div onclick="navigateTo('audit')" class="nav-btn" id="nav-audit">
             <span>⚖️</span>Audit
         </div>
+        <a href="/Kjv-companion/harmonizer/" class="nav-btn" id="nav-harmonizer" style="text-decoration:none;">
+            <span>🎵</span>Harmonizer
+        </a>
     </div>
 
     <script>
@@ -682,6 +689,15 @@
 
             // Store current result for saving
             window._lastHarmony = { query: input || "john 3:16", data };
+
+            // Publish to shared kjvHarmony namespace for harmonizer access
+            localStorage.setItem('kjvHarmony.lastQuery', input || 'john 3:16');
+            localStorage.setItem('kjvHarmony.lastResult', JSON.stringify({
+                source: 'companion',
+                query: input || 'john 3:16',
+                verse: data.verse,
+                timestamp: new Date().toISOString()
+            }));
 
             const html = `
                 <div class="result-card">
