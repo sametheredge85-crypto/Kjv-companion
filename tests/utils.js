@@ -26,7 +26,7 @@ function loadHTMLFile(fileName) {
  * @returns {string} Extracted JavaScript code
  */
 function extractScript(html) {
-  const scriptMatch = html.match(/<script>([\s\S]*?)<\/script>/);
+  const scriptMatch = html.match(/<script>([\s\S]*?)<\/script>/i);
   return scriptMatch ? scriptMatch[1] : '';
 }
 
@@ -36,7 +36,7 @@ function extractScript(html) {
  * @returns {string} Extracted CSS code
  */
 function extractStyles(html) {
-  const styleMatch = html.match(/<style>([\s\S]*?)<\/style>/);
+  const styleMatch = html.match(/<style>([\s\S]*?)<\/style>/i);
   return styleMatch ? styleMatch[1] : '';
 }
 

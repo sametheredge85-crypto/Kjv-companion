@@ -33,7 +33,7 @@ test.describe('PWA Functionality Tests', () => {
 });
 
 test.describe('Cross-Browser Compatibility', () => {
-  test('should render correctly in different browsers', async ({ page, browserName }) => {
+  test('should render correctly in different browsers', async ({ page }) => {
     await page.goto('/index.html');
     
     const heading = page.locator('h1');
@@ -41,8 +41,6 @@ test.describe('Cross-Browser Compatibility', () => {
     
     const input = page.locator('#input');
     await expect(input).toBeVisible();
-    
-    console.log(`Test passed in ${browserName}`);
   });
 });
 
