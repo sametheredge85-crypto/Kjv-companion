@@ -160,18 +160,47 @@ button {
 
 <script>
 function runHarmony() {
-  const input = document.getElementById("input").value;
+  const input = document.getElementById("input").value.trim();
 
   if (!input) return;
 
   document.getElementById("output").style.display = "block";
 
-  // Placeholder logic (replace later with real AI or API)
-  document.getElementById("title").innerText = "Harmony on " + input;
-  document.getElementById("short").innerText = "God reveals truth through His word, not man's reasoning.";
-  document.getElementById("context").innerText = "Context determines meaning. Scripture must interpret Scripture.";
-  document.getElementById("harmony").innerText = "All passages align when rightly divided under God's authorship.";
-  document.getElementById("application").innerText = "Seek Him first. Understanding follows His opening.";
+  // BASIC verse detection (simple)
+  const isVerse = input.match(/\d+:\d+/);
+
+  // Core doctrinal anchors (your framework)
+  const anchors = [
+    "God is the acting subject in salvation.",
+    "Life precedes response — the dead cannot hear.",
+    "God must open the heart, eyes, and ears first.",
+    "Context determines scope — not assumption.",
+    "Scripture interprets Scripture.",
+    "The work of God is finished and settled."
+  ];
+
+  // TITLE
+  document.getElementById("title").innerText =
+    isVerse ? "KJV Harmony — " + input : "KJV Harmony Inquiry";
+
+  // SHORT ANSWER
+  document.getElementById("short").innerText =
+    "The truth is revealed by God through His word, not produced by man's effort.";
+
+  // CONTEXT
+  document.getElementById("context").innerText =
+    isVerse
+      ? "This verse must be understood in its immediate setting, the chapter flow, and the full counsel of God."
+      : "The question must be examined by the whole counsel of God, not isolated reasoning.";
+
+  // HARMONY (anchors applied)
+  document.getElementById("harmony").innerText =
+    anchors.join(" ");
+
+  // APPLICATION
+  document.getElementById("application").innerText =
+    "Seek the Lord in His word. Wait upon Him to open understanding. Truth is received, not constructed.";
+
 }
 </script>
 
