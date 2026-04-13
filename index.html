@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KJV Harmony</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Georgia, serif;
+  background: #f5f1ea;
+  color: #2c2c2c;
+}
+
+.container {
+  max-width: 480px;
+  margin: auto;
+  padding: 20px;
+}
+
+/* HERO */
+.hero {
+  text-align: center;
+  padding: 60px 20px 40px;
+}
+
+.hero h1 {
+  font-size: 34px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.hero p {
+  font-size: 16px;
+  color: #7a6a55;
+}
+
+.btn {
+  display: inline-block;
+  margin-top: 25px;
+  padding: 14px 26px;
+  background: linear-gradient(135deg, #b8965a, #8c6b2f);
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+/* TOOL */
+.tool {
+  margin-top: 40px;
+  padding: 20px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+}
+
+input {
+  width: 100%;
+  padding: 14px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 16px;
+}
+
+button {
+  width: 100%;
+  margin-top: 12px;
+  padding: 14px;
+  border: none;
+  background: #8c6b2f;
+  color: white;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+/* RESULT */
+.result {
+  margin-top: 20px;
+}
+
+.section {
+  margin-top: 16px;
+}
+
+.section h3 {
+  margin-bottom: 5px;
+  color: #8c6b2f;
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+.section p {
+  margin: 0;
+  font-size: 15px;
+}
+
+/* FOOTER */
+.footer {
+  text-align: center;
+  margin-top: 50px;
+  font-size: 12px;
+  color: #999;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- HERO -->
+<div class="hero">
+  <h1>KJV Harmony</h1>
+  <p>Line upon line • Precept upon precept</p>
+  <a href="#tool" class="btn">Start Harmony</a>
+</div>
+
+<!-- TOOL -->
+<div id="tool" class="tool">
+  <input id="input" placeholder="Enter verse or question (John 3:16)">
+  <button onclick="runHarmony()">Get Harmony</button>
+
+  <div id="output" class="result" style="display:none;">
+
+    <div class="section">
+      <h3>TITLE</h3>
+      <p id="title"></p>
+    </div>
+
+    <div class="section">
+      <h3>SHORT ANSWER</h3>
+      <p id="short"></p>
+    </div>
+
+    <div class="section">
+      <h3>CONTEXT</h3>
+      <p id="context"></p>
+    </div>
+
+    <div class="section">
+      <h3>HARMONY</h3>
+      <p id="harmony"></p>
+    </div>
+
+    <div class="section">
+      <h3>APPLICATION</h3>
+      <p id="application"></p>
+    </div>
+
+  </div>
+</div>
+
+<div class="footer">
+  KJV • Whole Counsel • Scripture Cannot Be Broken
+</div>
+
+</div>
+
+<script>
+function runHarmony() {
+  const input = document.getElementById("input").value;
+
+  if (!input) return;
+
+  document.getElementById("output").style.display = "block";
+
+  // Placeholder logic (replace later with real AI or API)
+  document.getElementById("title").innerText = "Harmony on " + input;
+  document.getElementById("short").innerText = "God reveals truth through His word, not man's reasoning.";
+  document.getElementById("context").innerText = "Context determines meaning. Scripture must interpret Scripture.";
+  document.getElementById("harmony").innerText = "All passages align when rightly divided under God's authorship.";
+  document.getElementById("application").innerText = "Seek Him first. Understanding follows His opening.";
+}
+</script>
+
+</body>
+</html>
