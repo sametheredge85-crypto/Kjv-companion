@@ -29,11 +29,74 @@
     </div>
 
     <script>
-        // This is your internal "Furniture of God" - add your verses here
+        // This is your internal "Furniture of God" - expanded Bible verses
         const bibleData = [
             { ref: "John 10:35", text: "If he called them gods, unto whom the word of God came, and the scripture cannot be broken;" },
             { ref: "2 Timothy 3:16", text: "All scripture is given by inspiration of God, and is profitable for doctrine, for reproof, for correction, for instruction in righteousness:" },
-            { ref: "2 Timothy 3:17", text: "That the man of God may be perfect, throughly furnished unto all good works." }
+            { ref: "2 Timothy 3:17", text: "That the man of God may be perfect, throughly furnished unto all good works." },
+            { ref: "Psalm 119:120", text: "My flesh trembleth for fear of thee; and I am afraid of thy judgments." },
+            { ref: "Ezra 9:4", text: "Then were assembled unto me every one that trembled at the words of the God of Israel, because of the transgression of those that had been carried away; and I sat astonied until the evening sacrifice." },
+            { ref: "Ezra 10:3", text: "Now therefore let us make a covenant with our God to put away all the wives, and such as are born of them, according to the counsel of my lord, and of those that tremble at the commandment of our God; and let it be done according to the law." },
+            { ref: "Isaiah 66:2", text: "For all those things hath mine hand made, and all those things have been, saith the LORD: but to this man will I look, even to him that is poor and of a contrite spirit, and trembleth at my word." },
+            { ref: "Isaiah 66:5", text: "Hear the word of the LORD, ye that tremble at his word; Your brethren that hated you, that cast you out for my name's sake, said, Let the LORD be glorified: but he shall appear to your joy, and they shall be ashamed." },
+            { ref: "Habakkuk 3:16", text: "When I heard, my belly trembled; my lips quivered at the voice: rottenness entered into my bones, and I trembled in myself, that I might rest in the day of trouble: when he cometh up unto the people, he will invade them with his troops." },
+            { ref: "Acts 9:6", text: "And he trembling and astonished said, Lord, what wilt thou have me to do? And the Lord said unto him, Arise, and go into the city, and it shall be told thee what thou must do." },
+            { ref: "Philippians 2:12", text: "Wherefore, my beloved, as ye have always obeyed, not as in my presence only, but now much more in my absence, work out your own salvation with fear and trembling." },
+            { ref: "James 2:19", text: "Thou believest that there is one God; thou doest well: the devils also believe, and tremble." },
+            { ref: "Deuteronomy 2:25", text: "This day will I begin to put the dread of thee and the fear of thee upon the nations that are under the whole heaven, who shall hear report of thee, and shall tremble, and be in anguish because of thee." },
+            { ref: "1 Chronicles 16:30", text: "Fear before him, all the earth: the world also shall be stable, that it be not moved." },
+            { ref: "Psalm 96:9", text: "O worship the LORD in the beauty of holiness: fear before him, all the earth." },
+            { ref: "Psalm 99:1", text: "The LORD reigneth; let the people tremble: he sitteth between the cherubims; let the earth be moved." },
+            { ref: "Psalm 114:7", text: "Tremble, thou earth, at the presence of the Lord, at the presence of the God of Jacob;" },
+            { ref: "Isaiah 64:2", text: "As when the melting fire burneth, the fire causeth the waters to boil, to make thy name known to thine adversaries, that the nations may tremble at thy presence!" },
+            { ref: "Jeremiah 5:22", text: "Fear ye not me? saith the LORD: will ye not tremble at my presence, which have placed the sand for the bound of the sea by a perpetual decree, that it cannot pass it: and though the waves thereof toss themselves, yet can they not prevail; though they roar, yet can they not pass over it?" },
+            { ref: "Jeremiah 10:10", text: "But the LORD is the true God, he is the living God, and an everlasting king: at his wrath the earth shall tremble, and the nations shall not be able to abide his indignation." },
+            { ref: "Jeremiah 33:9", text: "And it shall be to me a name of joy, a praise and an honour before all the nations of the earth, which shall hear all the good that I do unto them: and they shall fear and tremble for all the goodness and for all the prosperity that I procure unto it." },
+            { ref: "Ezekiel 26:16", text: "Then all the princes of the sea shall come down from their thrones, and lay away their robes, and put off their broidered garments: they shall clothe themselves with trembling; they shall sit upon the ground, and shall tremble at every moment, and be astonished at thee." },
+            { ref: "Ezekiel 26:18", text: "Now shall the isles tremble in the day of thy fall; yea, the isles that are in the sea shall be troubled at thy departure." },
+            { ref: "Daniel 6:26", text: "I make a decree, That in every dominion of my kingdom men tremble and fear before the God of Daniel: for he is the living God, and stedfast for ever, and his kingdom that which shall not be destroyed, and his dominion shall be even unto the end." },
+            { ref: "Joel 2:1", text: "Blow ye the trumpet in Zion, and sound an alarm in my holy mountain: let all the inhabitants of the land tremble: for the day of the LORD cometh, for it is nigh at hand;" },
+            { ref: "Joel 2:10", text: "The earth shall quake before them; the heavens shall tremble: the sun and the moon shall be dark, and the stars shall withdraw their shining:" },
+            { ref: "Amos 8:8", text: "Shall not the land tremble for this, and every one mourn that dwelleth therein? and it shall rise up wholly as a flood; and it shall be cast out and drowned, as by the flood of Egypt." },
+            // Faith verses
+            { ref: "Hebrews 11:1", text: "Now faith is the substance of things hoped for, the evidence of things not seen." },
+            { ref: "Hebrews 11:6", text: "But without faith it is impossible to please him: for he that cometh to God must believe that he is, and that he is a rewarder of them that diligently seek him." },
+            { ref: "Romans 10:17", text: "So then faith cometh by hearing, and hearing by the word of God." },
+            { ref: "Ephesians 2:8-9", text: "For by grace are ye saved through faith; and that not of yourselves: it is the gift of God: Not of works, lest any man should boast." },
+            { ref: "Galatians 2:20", text: "I am crucified with Christ: nevertheless I live; yet not I, but Christ liveth in me: and the life which I now live in the flesh I live by the faith of the Son of God, who loved me, and gave himself for me." },
+            // Love verses
+            { ref: "John 3:16", text: "For God so loved the world, that he gave his only begotten Son, that whosoever believeth in him should not perish, but have everlasting life." },
+            { ref: "1 John 4:8", text: "He that loveth not knoweth not God; for God is love." },
+            { ref: "1 John 4:19", text: "We love him, because he first loved us." },
+            { ref: "1 Corinthians 13:4", text: "Charity suffereth long, and is kind; charity envieth not; charity vaunteth not itself, is not puffed up," },
+            { ref: "1 Corinthians 13:13", text: "And now abideth faith, hope, charity, these three; but the greatest of these is charity." },
+            { ref: "Romans 5:8", text: "But God commendeth his love toward us, in that, while we were yet sinners, Christ died for us." },
+            // Grace verses
+            { ref: "2 Corinthians 12:9", text: "And he said unto me, My grace is sufficient for thee: for my strength is made perfect in weakness. Most gladly therefore will I rather glory in my infirmities, that the power of Christ may rest upon me." },
+            { ref: "Titus 2:11", text: "For the grace of God that bringeth salvation hath appeared to all men," },
+            // Salvation verses
+            { ref: "Acts 4:12", text: "Neither is there salvation in any other: for there is none other name under heaven given among men, whereby we must be saved." },
+            { ref: "Romans 10:9", text: "That if thou shalt confess with thy mouth the Lord Jesus, and shalt believe in thine heart that God hath raised him from the dead, thou shalt be saved." },
+            { ref: "Romans 10:13", text: "For whosoever shall call upon the name of the Lord shall be saved." },
+            // Prayer verses
+            { ref: "Philippians 4:6", text: "Be careful for nothing; but in every thing by prayer and supplication with thanksgiving let your requests be made known unto God." },
+            { ref: "1 Thessalonians 5:17", text: "Pray without ceasing." },
+            { ref: "Matthew 6:9", text: "After this manner therefore pray ye: Our Father which art in heaven, Hallowed be thy name." },
+            // Peace verses
+            { ref: "John 14:27", text: "Peace I leave with you, my peace I give unto you: not as the world giveth, give I unto you. Let not your heart be troubled, neither let it be afraid." },
+            { ref: "Philippians 4:7", text: "And the peace of God, which passeth all understanding, shall keep your hearts and minds through Christ Jesus." },
+            // Strength verses
+            { ref: "Philippians 4:13", text: "I can do all things through Christ which strengtheneth me." },
+            { ref: "Isaiah 40:31", text: "But they that wait upon the LORD shall renew their strength; they shall mount up with wings as eagles; they shall run, and not be weary; and they shall walk, and not faint." },
+            // Hope verses
+            { ref: "Romans 15:13", text: "Now the God of hope fill you with all joy and peace in believing, that ye may abound in hope, through the power of the Holy Ghost." },
+            { ref: "Jeremiah 29:11", text: "For I know the thoughts that I think toward you, saith the LORD, thoughts of peace, and not of evil, to give you an expected end." },
+            // Comfort verses
+            { ref: "Psalm 23:4", text: "Yea, though I walk through the valley of the shadow of death, I will fear no evil: for thou art with me; thy rod and thy staff they comfort me." },
+            { ref: "Matthew 11:28", text: "Come unto me, all ye that labour and are heavy laden, and I will give you rest." },
+            // Wisdom verses
+            { ref: "James 1:5", text: "If any of you lack wisdom, let him ask of God, that giveth to all men liberally, and upbraideth not; and it shall be given him." },
+            { ref: "Proverbs 3:5-6", text: "Trust in the LORD with all thine heart; and lean not unto thine own understanding. In all thy ways acknowledge him, and he shall direct thy paths." }
         ];
 
         function runHarmony() {
