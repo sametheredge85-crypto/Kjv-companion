@@ -1,0 +1,12 @@
+{
+  "name": "kjv-companion",
+  "version": "1.0.0",
+  "description": "KJV Harmony Companion — whole-counsel Bible study environment",
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "jsdom": "^25.0.1"
+  }
+}
