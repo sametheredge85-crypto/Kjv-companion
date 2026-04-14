@@ -42,3 +42,45 @@ Additional resources:
 <sub>Repository/tool name: Kjv Companion (KJV Harmony Suite)</sub>
 
 We look forward to any who desire to worship in the simple, scriptural manner of the early church. Call or text [(864) 906-4911](tel:+18649064911) to confirm service details or get directions.
+
+---
+
+## Development & Testing
+
+This repository includes a comprehensive test suite to ensure code quality and reliability.
+
+### Quick Start
+
+```bash
+# Install dependencies
+npm install
+
+# Run all tests
+npm test
+
+# Run tests with coverage
+npm run test:coverage
+
+# Run E2E tests
+npm run test:e2e
+```
+
+### Test Coverage
+
+The project includes:
+- **Unit Tests**: Testing individual JavaScript functions and logic
+- **Integration Tests**: Verifying HTML page structure and component integration
+- **E2E Tests**: End-to-end testing with Playwright across multiple browsers
+- **Continuous Integration**: Automated testing via GitHub Actions
+
+For detailed testing documentation, see [TESTING.md](TESTING.md).
+
+### Contributing
+
+When contributing code:
+1. Write tests for new features
+2. Ensure all tests pass: `npm test`
+3. Maintain coverage thresholds (70%+)
+4. Follow existing code patterns
+
+See [TESTING.md](TESTING.md) for complete guidelines.
