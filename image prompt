@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>KJV Harmony Companion</title>
+    <style>
+        body { background-color: #f4ece2; font-family: 'Georgia', serif; color: #2c2c2c; padding: 20px; }
+        .container { max-width: 800px; margin: auto; border: 2px solid #8b4513; padding: 20px; background: white; }
+        h1 { color: #8b4513; text-align: center; border-bottom: 2px solid #8b4513; }
+        input { width: 70%; padding: 10px; font-size: 16px; }
+        button { padding: 10px 20px; background: #8b4513; color: white; border: none; cursor: pointer; }
+        #output { margin-top: 30px; line-height: 1.6; }
+        .verse-card { margin-bottom: 20px; padding: 10px; border-left: 4px solid #8b4513; background: #fafafa; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>KJV Harmony Companion</h1>
+        <p style="text-align: center; font-style: italic;">"The scripture cannot be broken." — John 10:35</p>
+        
+        <div style="text-align: center;">
+            <input type="text" id="searchInput" placeholder="Enter a word or topic...">
+            <button onclick="runHarmony()">Search</button>
+        </div>
+
+        <div id="output"></div>
+    </div>
+
+    <script>
+        // This is your internal "Furniture of God" - add your verses here
+        const bibleData = [
+            { ref: "John 10:35", text: "If he called them gods, unto whom the word of God came, and the scripture cannot be broken;" },
+            { ref: "2 Timothy 3:16", text: "All scripture is given by inspiration of God, and is profitable for doctrine, for reproof, for correction, for instruction in righteousness:" },
+            { ref: "2 Timothy 3:17", text: "That the man of God may be perfect, throughly furnished unto all good works." }
+        ];
+
+        function runHarmony() {
+            const term = document.getElementById("searchInput").value.toLowerCase();
+            const output = document.getElementById("output");
+            output.innerHTML = "";
+
+            if (!term) return;
+
+            // Filters based on the "Whole Counsel" without outside bias
+            const results = bibleData.filter(v => v.text.toLowerCase().includes(term));
+
+            if (results.length > 0) {
+                results.forEach(v => {
+                    output.innerHTML += `<div class="verse-card"><strong>${v.ref}</strong><br>${v.text}</div>`;
+                });
+            } else {
+                output.innerHTML = "<p>No results found in current context. Keep searching the scriptures.</p>";
+            }
+        }
+    </script>
+</body>
+</html>

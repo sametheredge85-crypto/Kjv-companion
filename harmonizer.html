@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KJV Harmonizer</title>
+    <style>
+        body {
+            font-family: Georgia, serif;
+            background-color: #fdfbf7;
+            margin: 0;
+            padding: 20px;
+            color: #2a2a2a;
+            line-height: 1.6;
+        }
+        h1 {
+            text-align: center;
+            color: #6b4e16;
+            margin-bottom: 10px;
+        }
+        p {
+            max-width: 700px;
+            margin: 10px auto;
+            text-align: center;
+        }
+        textarea {
+            width: 100%;
+            max-width: 700px;
+            height: 120px;
+            margin: 20px auto;
+            display: block;
+            padding: 10px;
+            font-family: Georgia, serif;
+            font-size: 1rem;
+            border: 2px solid #6b4e16;
+            border-radius: 4px;
+            background: #ffffff;
+        }
+        button {
+            display: block;
+            margin: 0 auto 20px;
+            padding: 10px 30px;
+            background: #6b4e16;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            font-family: Georgia, serif;
+        }
+        button:hover { background: #8b6a2a; }
+        .result {
+            display: none;
+            max-width: 700px;
+            margin: 20px auto;
+        }
+        .result-block {
+            background: #ffffff;
+            border-left: 4px solid #6b4e16;
+            border-radius: 4px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        .result-block h2 {
+            color: #6b4e16;
+            margin-top: 0;
+            font-size: 1.1rem;
+        }
+        .result-block p {
+            text-align: left;
+            margin: 0;
+        }
+        a {
+            color: #6b4e16;
+            text-decoration: none;
+        }
+        a:hover { text-decoration: underline; }
+        .back {
+            display: block;
+            margin: 40px auto;
+            text-align: center;
+            color: #6b4e16;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>KJV Harmonizer</h1>
+    <p>Enter a verse reference (e.g. <em>John 3:16</em>) or a doctrinal question to receive a whole-counsel harmony.</p>
+
+    <textarea id="input" placeholder="Enter a verse reference or question here..."></textarea>
+
+    <button onclick="runHarmony()">Harmonize</button>
+
+    <div class="result" id="output">
+        <div class="result-block">
+            <h2>Reference</h2>
+            <p id="title"></p>
+        </div>
+        <div class="result-block">
+            <h2>Short Answer</h2>
+            <p id="short"></p>
+        </div>
+        <div class="result-block">
+            <h2>Context</h2>
+            <p id="context"></p>
+        </div>
+        <div class="result-block">
+            <h2>Harmony Anchors</h2>
+            <p id="harmony"></p>
+        </div>
+        <div class="result-block">
+            <h2>Application</h2>
+            <p id="application"></p>
+        </div>
+    </div>
+
+    <p style="text-align:center;font-size:0.8rem;color:#6b4e16;margin-top:40px;padding-top:20px;border-top:1px solid #d8c9a7;">
+        "The scripture cannot be broken." — John 10:35 (KJV)
+    </p>
+
+    <a class="back" href="index.html">← Back to Home</a>
+
+    <script>
+    function runHarmony() {
+      var input = document.getElementById("input").value.trim();
+
+      if (!input) return;
+
+      document.getElementById("output").style.display = "block";
+
+      var isVerse = input.match(/\d+:\d+/);
+
+      var anchors = [
+        "God is the acting subject in salvation.",
+        "Life precedes response — the dead cannot hear.",
+        "God must open the heart, eyes, and ears first.",
+        "Context determines scope — not assumption.",
+        "Scripture interprets Scripture.",
+        "The work of God is finished and settled."
+      ];
+
+      document.getElementById("title").innerText =
+        isVerse ? "KJV Harmony — " + input : "KJV Harmony Inquiry: " + input;
+
+      document.getElementById("short").innerText =
+        "The truth is revealed by God through His word, not produced by man's effort.";
+
+      document.getElementById("context").innerText =
+        isVerse
+          ? "This verse must be understood in its immediate setting, the chapter flow, and the full counsel of God."
+          : "The question must be examined by the whole counsel of God, not isolated reasoning.";
+
+      document.getElementById("harmony").innerText =
+        anchors.join(" ");
+
+      document.getElementById("application").innerText =
+        "Seek the Lord in His word. Wait upon Him to open understanding. Truth is received, not constructed.";
+    }
+    </script>
+</body>
+</html>

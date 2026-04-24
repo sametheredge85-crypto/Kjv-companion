@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Annex Library Index</title>
+    <style>
+        body {
+            font-family: Georgia, serif;
+            background-color: #fdfbf7;
+            margin: 0;
+            padding: 20px;
+            color: #2a2a2a;
+        }
+        h1 {
+            text-align: center;
+            color: #6b4e16;
+            margin-bottom: 5px;
+        }
+        h3 {
+            text-align: center;
+            color: #444;
+            margin-top: 0;
+            font-weight: normal;
+            font-size: 1rem;
+        }
+        .section {
+            max-width: 700px;
+            margin: 25px auto;
+            padding: 15px;
+            background: #ffffff;
+            border-left: 4px solid #6b4e16;
+        }
+        ul {
+            padding-left: 20px;
+        }
+        a {
+            color: #6b4e16;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .back {
+            display: block;
+            margin: 40px auto;
+            text-align: center;
+            font-size: 1rem;
+            color: #6b4e16;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Annex Library</h1>
+    <h3>“Open thou mine eyes…” — Psalm 119:18</h3>
+
+    <div class="section">
+        <h2>Sub‑Annex: Trials, Frailty, and God’s Keeping Power</h2>
+        <ul>
+            <li><a href="Entry-05-When-Flesh-and-Heart-Fail-But-God.html">
+                When Flesh & Heart Fail — But God
+            </a></li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>Sub‑Annex: New Birth, Eternal Life, and Sovereign Love</h2>
+        <ul>
+            <li><a href="john3-16-new-birth-eternal.html">
+                John 3:16 — New Birth & Eternal Life
+            </a></li>
+        </ul>
+    </div>
+
+    <!-- Add more sections here as your library grows -->
+
+    <a class="back" href="annex.html">← Back to Annex Home</a>
+
+</body>
+</html>

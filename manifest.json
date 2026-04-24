@@ -1,15 +1,25 @@
 {
-  "name": "KJV Harmony Companion",
-  "short_name": "KJV Harmony",
-  "start_url": "/Kjv-companion/",
+  "name": "KJV Companion - Bible Study Environment",
+  "short_name": "KJV Companion",
+  "description": "Whole Counsel • Whole Context • Wholly Harmonious. A unified, stable Bible study environment.",
+  "start_url": "/kjv-companion/",
+  "scope": "/kjv-companion/",
   "display": "standalone",
-  "background_color": "#f8f1e3",
+  "orientation": "portrait",
+  "background_color": "#f5ebe0",
   "theme_color": "#8b5a2b",
   "icons": [
     {
       "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E📖%3C/text%3E%3C/svg%3E",
       "sizes": "192x192",
-      "type": "image/svg+xml"
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E📖%3C/text%3E%3C/svg%3E",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
     }
   ]
 }
