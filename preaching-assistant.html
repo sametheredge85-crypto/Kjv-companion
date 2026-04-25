@@ -162,17 +162,8 @@
     <script>
     function copyPrompt() {
         var s = document.getElementById("sermonInput").value.trim();
-        var prompt = s + "
-
-Apply the full Preaching Assistant review to this sermon:
-1. Apply the First Principles Pattern (speaker, audience, purpose, setting, flow).
-2. Restore full context of every passage used.
-3. Show narrative/argument flow ignoring chapter and verse breaks.
-4. Identify all doctrinal themes and how they interlock.
-5. Separate eternal finished work from timely conditional experience.
-6. Identify all audience types (disciples, Pharisees, crowds, Israel, the church).
-7. Show whole-Bible harmony for the doctrines present.
-8. Generate an Annex entry for this sermon.";
+        if (!s) { alert("Please paste your sermon outline or draft first."); return; }
+        var prompt = s + "\n\nApply the full Preaching Assistant review to this sermon:\n1. Apply the First Principles Pattern (speaker, audience, purpose, setting, flow).\n2. Restore full context of every passage used.\n3. Show narrative/argument flow ignoring chapter and verse breaks.\n4. Identify all doctrinal themes and how they interlock.\n5. Separate eternal finished work from timely conditional experience.\n6. Identify all audience types (disciples, Pharisees, crowds, Israel, the church).\n7. Show whole-Bible harmony for the doctrines present.\n8. Generate an Annex entry for this sermon."
         navigator.clipboard.writeText(prompt).then(function() {
             var c = document.getElementById("copyConfirm");
             c.style.display = "block";

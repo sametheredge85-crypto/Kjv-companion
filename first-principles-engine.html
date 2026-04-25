@@ -168,18 +168,8 @@
     <script>
     function copyPrompt() {
         var v = document.getElementById("verseInput").value.trim();
-        var prompt = v + "
-
-Apply the First Principles Pattern to this passage:
-1. Who is speaking?
-2. To whom is this spoken?
-3. Why is this being said?
-4. Where and when is this happening?
-5. What came before and after?
-6. What major themes are present?
-7. Is this God's eternal work or timely experience?
-8. Is this finished in Christ, or conditional in my walk?
-9. What other passages harmonize with this one?";
+        if (!v) { alert("Please paste a verse or passage first."); return; }
+        var prompt = v + "\n\nApply the First Principles Pattern to this passage:\n1. Who is speaking?\n2. To whom is this spoken?\n3. Why is this being said?\n4. Where and when is this happening?\n5. What came before and after?\n6. What major themes are present?\n7. Is this God's eternal work or timely experience?\n8. Is this finished in Christ, or conditional in my walk?\n9. What other passages harmonize with this one?";
         navigator.clipboard.writeText(prompt).then(function() {
             var c = document.getElementById("copyConfirm");
             c.style.display = "block";
