@@ -38,6 +38,10 @@
             border-radius: 4px;
             background: #ffffff;
         }
+        .copy-row { text-align: center; margin: 0 auto 20px; }
+        .copy-btn { padding: 10px 28px; background: #6b4e16; color: white; border: none; border-radius: 4px; font-size: 1rem; cursor: pointer; font-family: Georgia, serif; }
+        .copy-btn:hover { background: #8b6a2a; }
+        .copy-confirm { display: none; margin-top: 8px; color: #6b4e16; font-style: italic; font-size: 0.95rem; }
         .step {
             max-width: 850px;
             margin: 25px auto;
@@ -76,7 +80,12 @@
         This tool restores the writer’s full flow — ignoring chapter and verse numbers.
     </p>
 
-    <textarea placeholder="Paste a verse or passage here..."></textarea>
+    <textarea id="verseInput" placeholder="Paste a verse or passage here..."></textarea>
+
+    <div class="copy-row">
+        <button class="copy-btn" onclick="copyPrompt()">Copy Page Flow Prompt for Companion</button>
+        <div class="copy-confirm" id="copyConfirm">✓ Copied! Now paste into your Private Preacher's Companion.</div>
+    </div>
 
     <div class="step">
         <h2>1. Restore the Scene</h2>
@@ -171,5 +180,19 @@
 
     <a class="back" href="index.html">← Back to Home</a>
 
+    <script>
+    function copyPrompt() {
+        var v = document.getElementById("verseInput").value.trim();
+        if (!v) { alert("Please paste a verse or passage first."); return; }
+        var prompt = v + "\n\nAnalyze the page flow of this passage:\n1. Show the scene before and after.\n2. Identify where the writer shifts subjects, tone, or purpose.\n3. Track any changes in audience.\n4. Track any speaker changes.\n5. Identify what argument the writer is building.\n6. Identify major themes being developed.\n7. Note any shifts between eternal reality and timely experience.\n8. Note any covenant context shifts (Law, earthly ministry, New Covenant).\n9. Identify key literary devices.\n10. Summarize the writer's flow in 3-5 sentences.";
+        navigator.clipboard.writeText(prompt).then(function() {
+            var c = document.getElementById("copyConfirm");
+            c.style.display = "block";
+            setTimeout(function() { c.style.display = "none"; }, 4000);
+        }).catch(function() {
+            window.prompt("Copy this text:", prompt);
+        });
+    }
+    </script>
 </body>
 </html>

@@ -123,40 +123,183 @@
     <a class="back" href="index.html">← Back to Home</a>
 
     <script>
-    function runHarmony() {
-      var input = document.getElementById("input").value.trim();
+    // Shared verse database — sovereign grace / whole counsel
+    const verseDB = [
+        { ref: "John 10:35", text: "If he called them gods, unto whom the word of God came, and the scripture cannot be broken;" },
+        { ref: "2 Timothy 3:16", text: "All scripture is given by inspiration of God, and is profitable for doctrine, for reproof, for correction, for instruction in righteousness:" },
+        { ref: "Psalm 115:3", text: "But our God is in the heavens: he hath done whatsoever he hath pleased." },
+        { ref: "Isaiah 46:10", text: "Declaring the end from the beginning, and from ancient times the things that are not yet done, saying, My counsel shall stand, and I will do all my pleasure:" },
+        { ref: "Daniel 4:35", text: "And all the inhabitants of the earth are reputed as nothing: and he doeth according to his will in the army of heaven, and among the inhabitants of the earth: and none can stay his hand, or say unto him, What doest thou?" },
+        { ref: "Romans 9:15", text: "For he saith to Moses, I will have mercy on whom I will have mercy, and I will have compassion on whom I will have compassion." },
+        { ref: "Romans 9:16", text: "So then it is not of him that willeth, nor of him that runneth, but of God that sheweth mercy." },
+        { ref: "Ephesians 1:4", text: "According as he hath chosen us in him before the foundation of the world, that we should be holy and without blame before him in love:" },
+        { ref: "Ephesians 1:5", text: "Having predestinated us unto the adoption of children by Jesus Christ to himself, according to the good pleasure of his will," },
+        { ref: "Ephesians 1:11", text: "In whom also we have obtained an inheritance, being predestinated according to the purpose of him who worketh all things after the counsel of his own will:" },
+        { ref: "Romans 8:28", text: "And we know that all things work together for good to them that love God, to them who are the called according to his purpose." },
+        { ref: "Romans 8:29", text: "For whom he did foreknow, he also did predestinate to be conformed to the image of his Son, that he might be the firstborn among many brethren." },
+        { ref: "Romans 8:30", text: "Moreover whom he did predestinate, them he also called: and whom he called, them he also justified: and whom he justified, them he also glorified." },
+        { ref: "2 Thessalonians 2:13", text: "But we are bound to give thanks alway to God for you, brethren beloved of the Lord, because God hath from the beginning chosen you to salvation through sanctification of the Spirit and belief of the truth:" },
+        { ref: "1 Peter 1:2", text: "Elect according to the foreknowledge of God the Father, through sanctification of the Spirit, unto obedience and sprinkling of the blood of Jesus Christ: Grace unto you, and peace, be multiplied." },
+        { ref: "2 Timothy 1:9", text: "Who hath saved us, and called us with an holy calling, not according to our works, but according to his own purpose and grace, which was given us in Christ Jesus before the world began," },
+        { ref: "Acts 13:48", text: "And when the Gentiles heard this, they were glad, and glorified the word of the Lord: and as many as were ordained to eternal life believed." },
+        { ref: "John 3:3", text: "Jesus answered and said unto him, Verily, verily, I say unto thee, Except a man be born again, he cannot see the kingdom of God." },
+        { ref: "John 3:5", text: "Jesus answered, Verily, verily, I say unto thee, Except a man be born of water and of the Spirit, he cannot enter into the kingdom of God." },
+        { ref: "John 3:6", text: "That which is born of the flesh is flesh; and that which is born of the Spirit is spirit." },
+        { ref: "John 3:8", text: "The wind bloweth where it listeth, and thou hearest the sound thereof, but canst not tell whence it cometh, and whither it goeth: so is every one that is born of the Spirit." },
+        { ref: "Titus 3:5", text: "Not by works of righteousness which we have done, but according to his mercy he saved us, by the washing of regeneration, and renewing of the Holy Ghost;" },
+        { ref: "John 1:13", text: "Which were born, not of blood, nor of the will of the flesh, nor of the will of man, but of God." },
+        { ref: "Ezekiel 36:26", text: "A new heart also will I give you, and a new spirit will I put within you: and I will take away the stony heart out of your flesh, and I will give you an heart of flesh." },
+        { ref: "Ephesians 2:1", text: "And you hath he quickened, who were dead in trespasses and sins;" },
+        { ref: "Ephesians 2:4", text: "But God, who is rich in mercy, for his great love wherewith he loved us," },
+        { ref: "Ephesians 2:5", text: "Even when we were dead in sins, hath quickened us together with Christ, (by grace ye are saved;)" },
+        { ref: "Romans 3:10", text: "As it is written, There is none righteous, no, not one:" },
+        { ref: "Romans 3:11", text: "There is none that understandeth, there is none that seeketh after God." },
+        { ref: "John 6:44", text: "No man can come to me, except the Father which hath sent me draw him: and I will raise him up at the last day." },
+        { ref: "John 6:65", text: "And he said, Therefore said I unto you, that no man can come unto me, except it were given unto him of my Father." },
+        { ref: "John 5:25", text: "Verily, verily, I say unto you, The hour is coming, and now is, when the dead shall hear the voice of the Son of God: and they that hear shall live." },
+        { ref: "John 10:11", text: "I am the good shepherd: the good shepherd giveth his life for the sheep." },
+        { ref: "John 10:26", text: "But ye believe not, because ye are not of my sheep, as I said unto you." },
+        { ref: "John 10:27", text: "My sheep hear my voice, and I know them, and they follow me:" },
+        { ref: "John 10:28", text: "And I give unto them eternal life; and they shall never perish, neither shall any man pluck them out of my hand." },
+        { ref: "John 10:29", text: "My Father, which gave them me, is greater than all; and no man is able to pluck them out of my Father's hand." },
+        { ref: "Matthew 1:21", text: "And she shall bring forth a son, and thou shalt call his name JESUS: for he shall save his people from their sins." },
+        { ref: "John 19:30", text: "When Jesus therefore had received the vinegar, he said, It is finished: and he bowed his head, and gave up the ghost." },
+        { ref: "Hebrews 9:12", text: "Neither by the blood of goats and calves, but by his own blood he entered in once into the holy place, having obtained eternal redemption for us." },
+        { ref: "Hebrews 10:14", text: "For by one offering he hath perfected for ever them that are sanctified." },
+        { ref: "Romans 3:24", text: "Being justified freely by his grace through the redemption that is in Christ Jesus:" },
+        { ref: "Acts 5:31", text: "Him hath God exalted with his right hand to be a Prince and a Saviour, for to give repentance to Israel, and forgiveness of sins." },
+        { ref: "Acts 11:18", text: "When they heard these things, they held their peace, and glorified God, saying, Then hath God also to the Gentiles granted repentance unto life." },
+        { ref: "Philippians 1:29", text: "For unto you it is given in the behalf of Christ, not only to believe on him, but also to suffer for his sake;" },
+        { ref: "Hebrews 12:2", text: "Looking unto Jesus the author and finisher of our faith; who for the joy that was set before him endured the cross, despising the shame, and is set down at the right hand of the throne of God." },
+        { ref: "Romans 8:38", text: "For I am persuaded, that neither death, nor life, nor angels, nor principalities, nor powers, nor things present, nor things to come," },
+        { ref: "Romans 8:39", text: "Nor height, nor depth, nor any other creature, shall be able to separate us from the love of God, which is in Christ Jesus our Lord." },
+        { ref: "Philippians 1:6", text: "Being confident of this very thing, that he which hath begun a good work in you will perform it until the day of Jesus Christ:" },
+        { ref: "Jude 1:24", text: "Now unto him that is able to keep you from falling, and to present you faultless before the presence of his glory with exceeding joy," },
+        { ref: "Romans 6:23", text: "For the wages of sin is death; but the gift of God is eternal life through Jesus Christ our Lord." },
+        { ref: "John 3:16", text: "For God so loved the world, that he gave his only begotten Son, that whosoever believeth in him should not perish, but have everlasting life." },
+        { ref: "1 John 4:19", text: "We love him, because he first loved us." },
+        { ref: "Jeremiah 31:3", text: "The LORD hath appeared of old unto me, saying, Yea, I have loved thee with an everlasting love: therefore with lovingkindness have I drawn thee." },
+        { ref: "Ephesians 2:8", text: "For by grace are ye saved through faith; and that not of yourselves: it is the gift of God:" },
+        { ref: "Ephesians 2:9", text: "Not of works, lest any man should boast." },
+        { ref: "Hebrews 11:1", text: "Now faith is the substance of things hoped for, the evidence of things not seen." },
+        { ref: "Romans 10:17", text: "So then faith cometh by hearing, and hearing by the word of God." },
+        { ref: "Romans 5:8", text: "But God commendeth his love toward us, in that, while we were yet sinners, Christ died for us." },
+        { ref: "Acts 4:12", text: "Neither is there salvation in any other: for there is none other name under heaven given among men, whereby we must be saved." },
+        { ref: "Jonah 2:9", text: "But I will sacrifice unto thee with the voice of thanksgiving; I will pay that that I have vowed. Salvation is of the LORD." },
+        { ref: "Psalm 3:8", text: "Salvation belongeth unto the LORD: thy blessing is upon thy people. Selah." },
+        { ref: "Romans 8:1", text: "There is therefore now no condemnation to them which are in Christ Jesus, who walk not after the flesh, but after the Spirit." },
+        { ref: "1 Peter 1:5", text: "Who are kept by the power of God through faith unto salvation ready to be revealed in the last time." },
+        { ref: "Isaiah 55:11", text: "So shall my word be that goeth forth out of my mouth: it shall not return unto me void, but it shall accomplish that which I please, and it shall prosper in the thing whereto I sent it." },
+        { ref: "Romans 8:15", text: "For ye have not received the spirit of bondage again to fear; but ye have received the Spirit of adoption, whereby we cry, Abba, Father." },
+        { ref: "2 Corinthians 5:17", text: "Therefore if any man be in Christ, he is a new creature: old things are passed away; behold, all things are become new." },
+        { ref: "Galatians 2:20", text: "I am crucified with Christ: nevertheless I live; yet not I, but Christ liveth in me: and the life which I now live in the flesh I live by the faith of the Son of God, who loved me, and gave himself for me." },
+        { ref: "John 16:13", text: "Howbeit when he, the Spirit of truth, is come, he will guide you into all truth: for he shall not speak of himself; but whatsoever he shall hear, that shall he speak: and he will shew you things to come." },
+        { ref: "Isaiah 40:31", text: "But they that wait upon the LORD shall renew their strength; they shall mount up with wings as eagles; they shall run, and not be weary; and they shall walk, and not faint." },
+        { ref: "Philippians 4:7", text: "And the peace of God, which passeth all understanding, shall keep your hearts and minds through Christ Jesus." },
+        { ref: "Isaiah 26:3", text: "Thou wilt keep him in perfect peace, whose mind is stayed on thee: because he trusteth in thee." },
+    ];
 
-      if (!input) return;
+    // Topical harmony guide: maps key words to a short doctrinal note and related references
+    const topicGuide = [
+        { keys: ["predestinate","predestination","foreordain","ordained"], theme: "Predestination", note: "Predestination is God's sovereign pre-appointment of His people to salvation and conformity to Christ — not based on foreseen works but on His own purpose and grace.", anchors: ["Ephesians 1:4","Ephesians 1:5","Ephesians 1:11","Romans 8:29","Romans 8:30","Acts 13:48","2 Timothy 1:9"] },
+        { keys: ["elect","election","chosen","choose"], theme: "Election", note: "Election is God's eternal, unconditional choice of His people in Christ before the foundation of the world. It is not grounded in human merit or foreseen faith, but in the good pleasure of His will.", anchors: ["Ephesians 1:4","2 Thessalonians 2:13","1 Peter 1:2","Romans 9:11","Romans 9:15","Romans 9:16","John 15:16"] },
+        { keys: ["regenerat","born again","new birth","quicken","quickened"], theme: "Regeneration / New Birth", note: "Regeneration is the sovereign work of the Holy Spirit, giving spiritual life to the elect who are dead in sin. It is entirely of God — not produced by man's will or effort.", anchors: ["John 3:3","John 3:5","John 3:6","John 3:8","John 1:13","Titus 3:5","Ezekiel 36:26","Ephesians 2:1","Ephesians 2:5","John 5:25"] },
+        { keys: ["repentance","repent"], theme: "Repentance as God's Gift", note: "True repentance is granted by God, not manufactured by man. It is a gift of sovereign grace given to the elect.", anchors: ["Acts 5:31","Acts 11:18","2 Timothy 2:25"] },
+        { keys: ["faith","believe","belief"], theme: "Faith as Gift", note: "Saving faith is given by God, not produced by man's natural ability. It is the fruit of regeneration, not its cause.", anchors: ["Ephesians 2:8","Philippians 1:29","Hebrews 12:2","Romans 10:17","Hebrews 11:1"] },
+        { keys: ["sovereignty","sovereign","will of god","pleasure"], theme: "God's Sovereignty", note: "God reigns absolutely over all things — in creation, providence, and salvation — doing all His pleasure according to the counsel of His own will.", anchors: ["Psalm 115:3","Isaiah 46:10","Daniel 4:35","Romans 9:15","Romans 9:16","Proverbs 21:1"] },
+        { keys: ["redemption","redeem","redeemed","atonement"], theme: "Particular Redemption", note: "Christ gave His life for His sheep — His elect people — obtaining eternal redemption for them. His blood was not shed in vain for any for whom it was shed.", anchors: ["John 10:11","John 10:15","Matthew 1:21","Hebrews 9:12","Hebrews 10:14","Ephesians 5:25","Revelation 5:9"] },
+        { keys: ["grace","freely","gift"], theme: "Sovereign Grace", note: "Grace is the free and unmerited favour of God. Salvation is entirely of grace from start to finish — not mixed with human merit or effort.", anchors: ["Ephesians 2:8","Ephesians 2:9","Romans 3:24","Romans 11:6","2 Timothy 1:9","Titus 2:11"] },
+        { keys: ["persever","keep","secure","perish","pluck"], theme: "Preservation & Perseverance", note: "God preserves all His elect unto final salvation. No one given to Christ by the Father shall ever perish or be plucked from His hand.", anchors: ["John 10:27","John 10:28","John 10:29","Romans 8:38","Romans 8:39","Philippians 1:6","Jude 1:24","1 Peter 1:5"] },
+        { keys: ["dead","death","depravity","total","natural man"], theme: "Total Depravity / Spiritual Death", note: "Man by nature is spiritually dead, unable to seek God or come to Christ apart from divine quickening. The natural man cannot receive or know the things of the Spirit of God.", anchors: ["Ephesians 2:1","Romans 3:10","Romans 3:11","John 6:44","John 6:65","1 Corinthians 2:14"] },
+        { keys: ["justif","righteous","imputed","imputation"], theme: "Justification by Grace", note: "Justification is God's legal declaration that the elect are righteous in Christ — not by their own works but by Christ's perfect righteousness imputed to them by faith.", anchors: ["Romans 3:24","Romans 4:5","Romans 5:1","Galatians 2:16","Romans 8:1"] },
+        { keys: ["finish","it is finished","complete","done"], theme: "Finished Work of Christ", note: "Christ's atoning work is fully and perfectly completed. Nothing can be added to it. He declared 'It is finished' — and it is.", anchors: ["John 19:30","John 17:4","Hebrews 10:14","Hebrews 9:12","Colossians 2:14"] },
+        { keys: ["love","everlasting love","loved"], theme: "God's Everlasting Love", note: "God's love for His elect is eternal, everlasting, and unconditional. He loved them before the foundation of the world and that love cannot be revoked.", anchors: ["Jeremiah 31:3","1 John 4:19","Romans 5:8","John 3:16","1 John 4:8"] },
+        { keys: ["salvation","saved","save"], theme: "Salvation is of the LORD", note: "Salvation in every aspect belongs to God alone. It is His work from beginning to end — election, calling, regeneration, justification, and glorification.", anchors: ["Jonah 2:9","Psalm 3:8","Acts 4:12","Ephesians 2:8","Romans 8:30","Jude 1:24"] },
+    ];
+
+    function runHarmony() {
+      var rawInput = document.getElementById("input").value.trim();
+      if (!rawInput) return;
 
       document.getElementById("output").style.display = "block";
 
-      var isVerse = input.match(/\d+:\d+/);
+      var input = rawInput.toLowerCase();
+      var isVerseRef = rawInput.match(/\d+:\d+/);
 
-      var anchors = [
-        "God is the acting subject in salvation.",
-        "Life precedes response — the dead cannot hear.",
-        "God must open the heart, eyes, and ears first.",
-        "Context determines scope — not assumption.",
-        "Scripture interprets Scripture.",
-        "The work of God is finished and settled."
-      ];
+      // Try to find the verse in the database
+      var matchedVerses = verseDB.filter(function(v) {
+        return v.ref.toLowerCase().includes(input) || v.text.toLowerCase().includes(input);
+      });
 
+      // Try to find a topical match
+      var topicMatch = null;
+      for (var i = 0; i < topicGuide.length; i++) {
+        for (var j = 0; j < topicGuide[i].keys.length; j++) {
+          if (input.includes(topicGuide[i].keys[j])) {
+            topicMatch = topicGuide[i];
+            break;
+          }
+        }
+        if (topicMatch) break;
+      }
+
+      // Title
       document.getElementById("title").innerText =
-        isVerse ? "KJV Harmony — " + input : "KJV Harmony Inquiry: " + input;
+        isVerseRef ? "KJV Harmony — " + rawInput : "KJV Harmony Inquiry: " + rawInput;
 
-      document.getElementById("short").innerText =
-        "The truth is revealed by God through His word, not produced by man's effort.";
+      // Short answer — show verse text if found, or topic note
+      if (matchedVerses.length > 0) {
+        document.getElementById("short").innerHTML =
+          matchedVerses.slice(0, 3).map(function(v) {
+            return "<strong>" + v.ref + "</strong> — " + v.text;
+          }).join("<br><br>");
+      } else if (topicMatch) {
+        document.getElementById("short").innerText = topicMatch.note;
+      } else {
+        document.getElementById("short").innerText =
+          "The truth is revealed by God through His word, not produced by man's effort. Search the whole counsel to find harmony.";
+      }
 
-      document.getElementById("context").innerText =
-        isVerse
-          ? "This verse must be understood in its immediate setting, the chapter flow, and the full counsel of God."
-          : "The question must be examined by the whole counsel of God, not isolated reasoning.";
+      // Context
+      if (topicMatch) {
+        document.getElementById("context").innerText =
+          "Theme: " + topicMatch.theme + ". This doctrine must be traced through the whole counsel of God — not established from a single verse in isolation.";
+      } else {
+        document.getElementById("context").innerText =
+          isVerseRef
+            ? "This verse must be understood in its immediate setting, the chapter flow, and the full counsel of God. Consider speaker, audience, purpose, and setting."
+            : "This inquiry must be examined by the whole counsel of God, not isolated reasoning. Scripture interprets Scripture.";
+      }
 
-      document.getElementById("harmony").innerText =
-        anchors.join(" ");
+      // Harmony anchors — related verses from topic, or default sovereign grace anchors
+      var anchors;
+      if (topicMatch) {
+        var anchorVerses = topicMatch.anchors.map(function(ref) {
+          var v = verseDB.find(function(d) { return d.ref === ref; });
+          return v ? "<strong>" + v.ref + "</strong> — " + v.text : "<strong>" + ref + "</strong>";
+        });
+        document.getElementById("harmony").innerHTML = anchorVerses.join("<br><br>");
+      } else if (matchedVerses.length > 1) {
+        document.getElementById("harmony").innerHTML =
+          matchedVerses.slice(1).map(function(v) {
+            return "<strong>" + v.ref + "</strong> — " + v.text;
+          }).join("<br><br>");
+      } else {
+        var defaults = [
+          "God is the acting subject in salvation (Jonah 2:9 — Salvation is of the LORD).",
+          "Life precedes response — the dead cannot hear (Ephesians 2:1, 5).",
+          "God draws and opens the heart first (John 6:44; Ezekiel 36:26).",
+          "Context determines scope — not assumption (2 Timothy 2:15).",
+          "Scripture interprets Scripture — whole counsel, not isolated phrases.",
+          "The work of God is finished and settled (John 19:30; Hebrews 10:14)."
+        ];
+        document.getElementById("harmony").innerText = defaults.join("\n\n");
+      }
 
+      // Application
       document.getElementById("application").innerText =
-        "Seek the Lord in His word. Wait upon Him to open understanding. Truth is received, not constructed.";
+        "Seek the Lord in His word. Wait upon Him to open understanding. " +
+        "Truth is received, not constructed. \"The scripture cannot be broken.\" — John 10:35";
     }
     </script>
 </body>

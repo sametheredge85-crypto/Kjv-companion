@@ -40,6 +40,28 @@
             border-radius: 4px;
             background: #ffffff;
         }
+        .copy-row {
+            text-align: center;
+            margin: 0 auto 20px;
+        }
+        .copy-btn {
+            padding: 10px 28px;
+            background: #6b4e16;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            font-family: Georgia, serif;
+        }
+        .copy-btn:hover { background: #8b6a2a; }
+        .copy-confirm {
+            display: none;
+            margin-top: 8px;
+            color: #6b4e16;
+            font-style: italic;
+            font-size: 0.95rem;
+        }
         .instructions {
             max-width: 700px;
             margin: 20px auto;
@@ -78,7 +100,12 @@
         This page helps you get a whole‑counsel, KJV‑anchored answer that cannot be overturned by context.
     </p>
 
-    <textarea placeholder="Type your Bible question here..."></textarea>
+    <textarea id="questionInput" placeholder="Type your Bible question here..."></textarea>
+
+    <div class="copy-row">
+        <button class="copy-btn" onclick="copyQuestion()">Copy Question for Companion</button>
+        <div class="copy-confirm" id="copyConfirm">✓ Copied! Now paste into your Private Preacher's Companion.</div>
+    </div>
 
     <div class="instructions">
         <h2>How to Ask for a Whole‑Counsel Answer</h2>
@@ -121,5 +148,19 @@
 
     <a class="back" href="index.html">← Back to Home</a>
 
+    <script>
+    function copyQuestion() {
+        var q = document.getElementById("questionInput").value.trim();
+        if (!q) { alert("Please type your question first."); return; }
+        var prompt = q + "\n\nAnswer this using the whole counsel of the KJV in full context.";
+        navigator.clipboard.writeText(prompt).then(function() {
+            var c = document.getElementById("copyConfirm");
+            c.style.display = "block";
+            setTimeout(function() { c.style.display = "none"; }, 4000);
+        }).catch(function() {
+            prompt = window.prompt("Copy this text:", prompt);
+        });
+    }
+    </script>
 </body>
 </html>

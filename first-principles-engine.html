@@ -38,6 +38,10 @@
             border-radius: 4px;
             background: #ffffff;
         }
+        .copy-row { text-align: center; margin: 0 auto 20px; }
+        .copy-btn { padding: 10px 28px; background: #6b4e16; color: white; border: none; border-radius: 4px; font-size: 1rem; cursor: pointer; font-family: Georgia, serif; }
+        .copy-btn:hover { background: #8b6a2a; }
+        .copy-confirm { display: none; margin-top: 8px; color: #6b4e16; font-style: italic; font-size: 0.95rem; }
         .step {
             max-width: 850px;
             margin: 25px auto;
@@ -76,7 +80,12 @@
         Then follow the steps below to restore full context using the First Principles Pattern.
     </p>
 
-    <textarea placeholder="Paste a verse or passage here..."></textarea>
+    <textarea id="verseInput" placeholder="Paste a verse or passage here..."></textarea>
+
+    <div class="copy-row">
+        <button class="copy-btn" onclick="copyPrompt()">Copy Full Prompt for Companion</button>
+        <div class="copy-confirm" id="copyConfirm">✓ Copied! Now paste into your Private Preacher's Companion.</div>
+    </div>
 
     <div class="step">
         <h2>1. Speaker</h2>
@@ -138,3 +147,47 @@
     </div>
 
     <div class="step">
+        <h2>9. Cross-Reference</h2>
+        <p>Ask:</p>
+        <p style="text-align:center;"><strong>&ldquo;What other passages shed light on this one?&rdquo;</strong></p>
+        <p>Scripture is its own best interpreter. Let the whole counsel govern.</p>
+    </div>
+
+    <h2>Helpful Tools</h2>
+    <p style="text-align:center;"><a href="context-restorer.html">Context Restorer &rarr;</a></p>
+    <p style="text-align:center;"><a href="harmonizer.html">KJV Harmonizer &rarr;</a></p>
+    <p style="text-align:center;"><a href="qa.html">Bible Q &amp; A &rarr;</a></p>
+
+    <p style="text-align:center;font-size:0.8rem;color:#6b4e16;margin-top:40px;padding-top:20px;border-top:1px solid #d8c9a7;">
+        This tool is non-denominational and anchored solely in the KJV.
+        Whole counsel. Whole context. Whole harmony. Truth remains true.
+    </p>
+
+    <a class="back" href="index.html">&larr; Back to Home</a>
+
+    <script>
+    function copyPrompt() {
+        var v = document.getElementById("verseInput").value.trim();
+        var prompt = v + "
+
+Apply the First Principles Pattern to this passage:
+1. Who is speaking?
+2. To whom is this spoken?
+3. Why is this being said?
+4. Where and when is this happening?
+5. What came before and after?
+6. What major themes are present?
+7. Is this God's eternal work or timely experience?
+8. Is this finished in Christ, or conditional in my walk?
+9. What other passages harmonize with this one?";
+        navigator.clipboard.writeText(prompt).then(function() {
+            var c = document.getElementById("copyConfirm");
+            c.style.display = "block";
+            setTimeout(function() { c.style.display = "none"; }, 4000);
+        }).catch(function() {
+            window.prompt("Copy this text:", prompt);
+        });
+    }
+    </script>
+</body>
+</html>
