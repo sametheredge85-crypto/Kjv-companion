@@ -13,6 +13,9 @@
         button { padding: 10px 20px; background: #8b4513; color: white; border: none; cursor: pointer; }
         #output { margin-top: 30px; line-height: 1.6; }
         .verse-card { margin-bottom: 20px; padding: 10px; border-left: 4px solid #8b4513; background: #fafafa; }
+        .nav-links { margin-top: 30px; border-top: 1px solid #d8c9a7; padding-top: 20px; display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+        .nav-links a { display: inline-block; padding: 8px 16px; background: #8b4513; color: white; border-radius: 4px; text-decoration: none; font-size: 0.9rem; }
+        .nav-links a:hover { background: #a0522d; }
     </style>
 </head>
 <body>
@@ -26,9 +29,28 @@
         </div>
 
         <div id="output"></div>
+
+        <div class="nav-links">
+            <a href="harmonizer.html">KJV Harmonizer</a>
+            <a href="qa.html">Bible Q &amp; A</a>
+            <a href="preacher-suite.html">Preacher's Suite</a>
+            <a href="notes.html">Notes</a>
+            <a href="annex-index.html">Annex Library</a>
+            <a href="settings.html">Settings</a>
+        </div>
     </div>
 
     <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .catch(err => console.warn('SW registration failed:', err));
+            });
+        }
+
+        document.getElementById('searchInput').addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') runHarmony();
+        });
         // This is your internal "Furniture of God" - expanded Bible verses
         const bibleData = [
             { ref: "John 10:35", text: "If he called them gods, unto whom the word of God came, and the scripture cannot be broken;" },
