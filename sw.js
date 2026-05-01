@@ -1,19 +1,32 @@
-// sw.js - Simple Service Worker for KJV Harmony Companion PWA
-const CACHE_NAME = 'kjv-companion-v1';
+// sw.js - Service Worker for KJV Harmony Companion PWA
+const CACHE_NAME = 'kjv-companion-v2';
+const BASE = '/kjv-companion';
 const urlsToCache = [
-  '/',
-  '/index.html',
-  '/data/bibleData.js',
-  '/manifest.json'
-  // GitHub Pages will automatically cache other HTML files, images, PDFs, MP3s on first visit
+  BASE + '/',
+  BASE + '/index.html',
+  BASE + '/data/bibleData.js',
+  BASE + '/manifest.json',
+  BASE + '/icons/icon-192.svg',
+  BASE + '/icons/icon-512.svg'
 ];
 
 self.addEventListener('install', event => {
   console.log('✅ Installing KJV Companion Service Worker...');
+  // skipWaiting activates the new SW immediately; safe for this single-user PWA
+  self.skipWaiting();
   event.waitUntil(
-    caches.open(CACHE_NAME).then(cache => {
-      return cache.addAll(urlsToCache);
-    })
+    caches.open(CACHE_NAME).then(cache => cache.addAll(urlsToCache))
+  );
+});
+
+self.addEventListener('activate', event => {
+  console.log('✅ Activating KJV Companion Service Worker...');
+  event.waitUntil(
+    caches.keys().then(keys =>
+      Promise.all(
+        keys.filter(key => key !== CACHE_NAME).map(key => caches.delete(key))
+      )
+    ).then(() => self.clients.claim())
   );
 });
 

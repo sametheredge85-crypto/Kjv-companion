@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#8b5a2b">
     <title>KJV Harmony Companion</title>
     <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icons/icon-192.svg">
     <style>
         body { background-color: #f4ece2; font-family: 'Georgia', serif; color: #2c2c2c; padding: 20px; }
         .container { max-width: 800px; margin: auto; border: 2px solid #8b4513; padding: 20px; background: white; }
@@ -116,6 +118,14 @@
             } else {
                 output.innerHTML = "<p>No results found in current context. Keep searching the scriptures.</p>";
             }
+        }
+    </script>
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/kjv-companion/sw.js')
+                .then(reg => console.log('✅ Service Worker registered:', reg.scope))
+                .catch(err => console.error('Service Worker registration failed:', err));
         }
     </script>
 </body>
