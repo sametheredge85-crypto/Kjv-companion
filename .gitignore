@@ -1,0 +1,17 @@
+# OS junk
+.DS_Store
+Thumbs.db
+*.tmp
+*.temp
+
+# Editor files
+.vscode/
+.idea/
+
+# Large temp builds (for later)
+node_modules/
+dist/
+
+# Personal notes or private files
+*.private.*
+*.bak
