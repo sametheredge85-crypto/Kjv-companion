@@ -40,7 +40,7 @@ All doctrine is anchored in five non-negotiable priorities:
 | Notes | `notes.html` | Personal study notes |
 | Settings | `settings.html` | App preferences |
 
-All tools are powered by `bibleData.js`, which contains the KJV verse data used across the suite.
+All tools are powered by `data/bibleData.js`, which contains the KJV verse data used across the suite.
 
 ---
 
@@ -59,7 +59,7 @@ No login required. No data leaves your device.
 ```
 kjv-companion/
 ├── index.html                     # Home / search entry point
-├── bibleData.js                   # KJV verse data (shared across all tools)
+├── data/bibleData.js              # KJV verse data (shared across all tools)
 ├── manifest.json                  # PWA manifest
 ├── harmonizer.html                # Bible harmonizer
 ├── preacher-suite.html            # Preacher's private suite
