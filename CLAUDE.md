@@ -10,8 +10,8 @@
 
 ## How to Use AI in This Project
 1. Always attach `harmony-rules.md` when running any /goal command.
-2. Use the **King James Harmony Reply Generator** for personal/doctrinal correspondence.
-3. Use the **Harmony Exegete Prompt** for deep exegesis and point-by-point replies.
+2. Use the **King James Harmony Reply Generator** (`harmony-reply-generator.md`) for personal/doctrinal correspondence.
+3. Use the **Harmony Exegete Prompt** (`harmony-exegete-prompt.md`) for deep exegesis and point-by-point replies.
 4. All output must be clean, polished markdown ready for the PWA or print.
 
 ## Technology Stack
@@ -21,4 +21,4 @@
 
 **Never deviate from KJV 1769 text. Scripture interprets Scripture. The scripture cannot be broken.**
 
-See `docs/` for full maintenance prompts and `harmony-rules.md` for doctrinal guardrails.
+See `harmony-rules.md` for doctrinal guardrails and the individual prompt files for ready-to-run /goal templates.
