@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>First Principles Engine</title>
+    <style>
+        /* (your original styles unchanged) */
+    </style>
+</head>
+<body>
+
+    <h1>First Principles Engine</h1>
+
+    <p>
+        Paste any verse or passage.  
+        Then follow the steps below to restore full context using the First Principles Pattern.
+    </p>
+
+    <textarea placeholder="Paste a verse or passage here..."></textarea>
+
+    <!-- NEW BUTTON -->
+    <div style="text-align:center; margin:20px 0;">
+      <button onclick="copyFirstPrinciplesPrompt()" style="background:#6b4e16; color:white; padding:12px 24px; font-size:1.1em; border:none; border-radius:8px;">
+        🔄 Generate First Principles + Harmony Prompt
+      </button>
+    </div>
+
+    <!-- (rest of your original step sections remain unchanged) -->
+
+    <a class="back" href="preacher-suite.html">← Back to Preacher’s Suite</a>
+
+    <!-- NEW SCRIPT -->
+    <script>
+    function copyFirstPrinciplesPrompt() {
+      fetch('harmony-exegete-prompt.md')
+        .then(r => r.text())
+        .then(text => { 
+          navigator.clipboard.writeText(text); 
+          alert('✅ First Principles + Full Harmony Exegete Prompt copied!\n\nPaste into Claude/Grok with harmony-rules.md attached.');
+        });
+    }
+    </script>
+
+</body>
+</html>
