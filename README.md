@@ -11,7 +11,7 @@ Designed for preachers, teachers, and believers who want to study the whole coun
 
 ## About
 
-The KJV Harmony Companion is a Progressive Web App (PWA) for Macedonia Primitive Baptist Church, Section, Alabama. It runs entirely in the browser — no accounts, no ads, no distractions. After the first visit it works fully offline and can be installed on any phone or desktop like a native app ("Add to Home Screen").
+The KJV Harmony Companion is a Progressive Web App (PWA) for Macedonia Primitive Baptist Church, Section, Alabama. It runs entirely in the browser — no accounts, no ads, no distractions. After the first load, it works completely offline.
 
 All doctrine is anchored in five non-negotiable priorities:
 
@@ -41,6 +41,33 @@ All doctrine is anchored in five non-negotiable priorities:
 | Settings | `settings.html` | App preferences |
 
 All tools are powered by `data/bibleData.js`, which contains the KJV verse data used across the suite.
+
+---
+
+## AI Prompting System (King James Harmony Prompts)
+
+The companion now includes ready-to-run **/goal** templates for Claude Code / Codex Desktop / Grok. These prompts power deep exegesis and doctrinal replies while enforcing strict KJV 1769 harmony rules.
+
+### Core Prompt Files
+- **`harmony-rules.md`** – Official checklist & guardrails (attach to every run)
+- **`harmony-exegete-prompt.md`** – Full canonical exegete with 4-step protocol and required section headings
+- **`harmony-reply-generator.md`** – Personal letter / point-by-point doctrinal reply generator (BLUE INK RESPONSE format)
+- **`half_hinges_bible.md`** – Role-play layers (Plain English Pastor + Paul Harvey storyteller)
+
+### How to Use
+1. Open any prompt file → copy the entire `/goal` block
+2. Paste into Claude Code / Codex Desktop (full-auto mode) or Grok
+3. Attach `harmony-rules.md` as the checklist
+4. Fill the placeholders (e.g., RECIPIENT & CONTEXT, OPPOSING POSITION)
+5. Run → receive polished markdown ready for print or import into the PWA
+
+All prompts are designed for the **King James Harmony Project** and maintain:
+- 1769 KJV text only
+- Scripture interprets Scripture
+- Sovereign grace / life-before-response order
+- Warm yet firm pastoral tone
+
+See `CLAUDE.md` for full usage guide.
 
 ---
 
